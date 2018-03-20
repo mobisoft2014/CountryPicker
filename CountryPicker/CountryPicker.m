@@ -236,10 +236,10 @@
     {
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(35, 3, 170, 24)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(3, 3, 170, 24)];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
-        label.textAlignment = NSTextAlignmentRight;
+        label.textAlignment = NSTextAlignmentCenter;
         label.tag = 1;
         if (self.labelFont)
         {
@@ -247,7 +247,7 @@
         }
         [view addSubview:label];
         
-        UIImageView *flagView = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 24, 24)];
+        UIImageView *flagView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 3, 50, 24)];
         flagView.contentMode = UIViewContentModeScaleAspectFit;
         flagView.tag = 2;
         [view addSubview:flagView];
