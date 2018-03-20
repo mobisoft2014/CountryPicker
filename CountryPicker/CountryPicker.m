@@ -239,7 +239,7 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(35, 3, 170, 24)];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
-        // label.textAlignment = NSTextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentRight;
         label.tag = 1;
         if (self.labelFont)
         {
