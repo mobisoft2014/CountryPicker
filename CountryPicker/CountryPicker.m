@@ -93,9 +93,9 @@
                 countryName = [[NSLocale localeWithLocaleIdentifier:@"en_US"] displayNameForKey:NSLocaleCountryCode value:code];
             }
  
-            if([code isEqualToString:"AR"] || [code isEqualToString:"CL"] ||
-               [code isEqualToString:"UY"] || [code isEqualToString:"EC"] ||
-               [code isEqualToString:"GT"]) {
+            if([code isEqualToString:"@AR"] || [code isEqualToString:"@CL"] ||
+               [code isEqualToString:"@UY"] || [code isEqualToString:"@EC"] ||
+               [code isEqualToString:"@GT"]) {
                 namesByCode[code] = countryName ?: code;
             }
         }
