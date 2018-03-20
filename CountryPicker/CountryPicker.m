@@ -236,10 +236,10 @@
     {
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, 170, 24)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 3, 170, 24)];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
-        label.textAlignment = NSTextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentLeft;
         label.tag = 1;
         if (self.labelFont)
         {
