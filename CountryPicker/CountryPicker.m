@@ -236,7 +236,7 @@
     {
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 30)];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 3, 245, 24)];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
