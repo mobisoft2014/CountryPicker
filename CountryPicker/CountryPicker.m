@@ -232,7 +232,7 @@
 - (UIView *)pickerView:(__unused UIPickerView *)pickerView viewForRow:(NSInteger)row
           forComponent:(__unused NSInteger)component reusingView:(UIView *)view
 {
-    if (!view)
+    /*if (!view)
     {
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 30)];
         
@@ -249,6 +249,27 @@
         [view addSubview:label];
         
         UIImageView *flagView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 3, 50, 24)];
+        flagView.contentMode = UIViewContentModeScaleAspectFit;
+        flagView.tag = 2;
+        [view addSubview:flagView];
+    }*/
+    
+    if (!view)
+    {
+        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 30)];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)];
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = [UIColor whiteColor];
+        
+        label.tag = 1;
+        if (self.labelFont)
+        {
+            label.font = self.labelFont;
+        }
+        [view addSubview:label];
+        
+        UIImageView *flagView = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 24, 24)];
         flagView.contentMode = UIViewContentModeScaleAspectFit;
         flagView.tag = 2;
         [view addSubview:flagView];
