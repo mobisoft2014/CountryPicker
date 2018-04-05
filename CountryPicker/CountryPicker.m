@@ -93,11 +93,11 @@
                 countryName = [[NSLocale localeWithLocaleIdentifier:@"en_US"] displayNameForKey:NSLocaleCountryCode value:code];
             }
  
-            /*if([code isEqualToString:@"AR"] || [code isEqualToString:@"CL"] ||
+            if([code isEqualToString:@"AR"] || [code isEqualToString:@"CL"] ||
                [code isEqualToString:@"UY"] || [code isEqualToString:@"EC"] ||
                [code isEqualToString:@"GT"]) {
                 namesByCode[code] = countryName ?: code;
-            }*/
+            }
         }
         _countryNamesByCode = [namesByCode copy];
     }
@@ -232,15 +232,14 @@
 - (UIView *)pickerView:(__unused UIPickerView *)pickerView viewForRow:(NSInteger)row
           forComponent:(__unused NSInteger)component reusingView:(UIView *)view
 {
-    /*if (!view)
+    if (!view)
     {
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 30)];
         
-        //UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(70, 3, 190, 24)];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(70, 3, 190, 24)];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
-        label.textAlignment = NSTextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentLeft;
         label.tag = 1;
         if (self.labelFont)
         {
@@ -252,31 +251,12 @@
         flagView.contentMode = UIViewContentModeScaleAspectFit;
         flagView.tag = 2;
         [view addSubview:flagView];
-    }*/
-    
-    if (!view)
-    {
-        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 30)];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(35, 3, 245, 24)];
-        label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor whiteColor];
-        
-        label.tag = 1;
-        if (self.labelFont)
-        {
-            label.font = self.labelFont;
-        }
-        [view addSubview:label];
-        
-        UIImageView *flagView = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 24, 24)];
-        flagView.contentMode = UIViewContentModeScaleAspectFit;
-        flagView.tag = 2;
-        [view addSubview:flagView];
     }
 
     ((UILabel *)[view viewWithTag:1]).text = [[self class] countryNames][(NSUInteger)row];
     NSString *imagePath = [NSString stringWithFormat:@"CountryPicker.bundle/%@", [[self class] countryCodes][(NSUInteger) row]];
+    NSLog(@"Image : %@", imagePath);
+    
     UIImage *image;
     if ([[UIImage class] respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)])
     {
