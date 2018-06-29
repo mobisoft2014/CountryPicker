@@ -95,7 +95,7 @@
  
             if([code isEqualToString:@"AR"] || [code isEqualToString:@"CL"] ||
                [code isEqualToString:@"UY"] || [code isEqualToString:@"EC"] ||
-               [code isEqualToString:@"NI"]) {
+               [code isEqualToString:@"NI"] || [code isEqualToString:@"CR"]) {
                 namesByCode[code] = countryName ?: code;
             }
         }
