@@ -55,9 +55,9 @@
 @implementation CountryPicker
 
 // delegate doesn't use _ prefix to avoid name clash with superclass
-@synthesize delegate, labelFont = _labelFont;
+@synthesize filterCountryCodes = _filterCountryCodes, delegate, labelFont = _labelFont;
 
-+ (NSArray *)countryNames
+- (NSArray *)countryNames
 {
     static NSArray *_countryNames = nil;
     if (!_countryNames)
@@ -67,7 +67,7 @@
     return _countryNames;
 }
 
-+ (NSArray *)countryCodes
+- (NSArray *)countryCodes
 {
     static NSArray *_countryCodes = nil;
     if (!_countryCodes)
@@ -77,7 +77,7 @@
     return _countryCodes;
 }
 
-+ (NSDictionary *)countryNamesByCode
+- (NSDictionary *)countryNamesByCode
 {
     static NSDictionary *_countryNamesByCode = nil;
     if (!_countryNamesByCode)
@@ -93,9 +93,12 @@
                 countryName = [[NSLocale localeWithLocaleIdentifier:@"en_US"] displayNameForKey:NSLocaleCountryCode value:code];
             }
  
-            if([code isEqualToString:@"AR"] || [code isEqualToString:@"CL"] ||
+            /*if([code isEqualToString:@"AR"] || [code isEqualToString:@"CL"] ||
                [code isEqualToString:@"UY"] || [code isEqualToString:@"EC"] ||
                [code isEqualToString:@"NI"] || [code isEqualToString:@"CR"]) {
+                namesByCode[code] = countryName ?: code;
+            }*/
+            if ([self.filterCountryCodes containsObject:code]) {
                 namesByCode[code] = countryName ?: code;
             }
         }
@@ -104,7 +107,7 @@
     return _countryNamesByCode;
 }
 
-+ (NSDictionary *)countryCodesByName
+- (NSDictionary *)countryCodesByName
 {
     static NSDictionary *_countryCodesByName = nil;
     if (!_countryCodesByName)
@@ -151,7 +154,7 @@
 
 - (void)setSelectedCountryCode:(NSString *)countryCode animated:(BOOL)animated
 {
-    NSUInteger index = [[[self class] countryCodes] indexOfObject:countryCode];
+    NSUInteger index = [[self countryCodes] indexOfObject:countryCode];
     if (index != NSNotFound)
     {
         [self selectRow:(NSInteger)index inComponent:0 animated:animated];
@@ -166,12 +169,12 @@
 - (NSString *)selectedCountryCode
 {
     NSUInteger index = (NSUInteger)[self selectedRowInComponent:0];
-    return [[self class] countryCodes][index];
+    return [self countryCodes][index];
 }
 
 - (void)setSelectedCountryName:(NSString *)countryName animated:(BOOL)animated
 {
-    NSUInteger index = [[[self class] countryNames] indexOfObject:countryName];
+    NSUInteger index = [[self countryNames] indexOfObject:countryName];
     if (index != NSNotFound)
     {
         [self selectRow:(NSInteger)index inComponent:0 animated:animated];
@@ -186,7 +189,7 @@
 - (NSString *)selectedCountryName
 {
     NSUInteger index = (NSUInteger)[self selectedRowInComponent:0];
-    return [[self class] countryNames][index];
+    return [self countryNames][index];
 }
 
 - (void)setSelectedLocale:(NSLocale *)locale animated:(BOOL)animated
@@ -226,7 +229,7 @@
 
 - (NSInteger)pickerView:(__unused UIPickerView *)pickerView numberOfRowsInComponent:(__unused NSInteger)component
 {
-    return (NSInteger)[[self class] countryCodes].count;
+    return (NSInteger)[self countryCodes].count;
 }
 
 - (UIView *)pickerView:(__unused UIPickerView *)pickerView viewForRow:(NSInteger)row
@@ -253,8 +256,8 @@
         [view addSubview:flagView];
     }
 
-    ((UILabel *)[view viewWithTag:1]).text = [[self class] countryNames][(NSUInteger)row];
-    NSString *imagePath = [NSString stringWithFormat:@"CountryPicker.bundle/%@", [[self class] countryCodes][(NSUInteger) row]];
+    ((UILabel *)[view viewWithTag:1]).text = [self countryNames][(NSUInteger)row];
+    NSString *imagePath = [NSString stringWithFormat:@"CountryPicker.bundle/%@", [self countryCodes][(NSUInteger) row]];
     NSLog(@"Image : %@", imagePath);
     
     UIImage *image;
@@ -277,5 +280,4 @@
     __strong id<CountryPickerDelegate> strongDelegate = delegate;
     [strongDelegate countryPicker:self didSelectCountryWithName:self.selectedCountryName code:self.selectedCountryCode];
 }
-
 @end

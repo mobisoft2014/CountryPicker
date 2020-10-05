@@ -52,19 +52,19 @@
 @interface CountryPicker : UIPickerView
 
 /// Returns an array of all country names in alphabetical order.
-+ (NSArray<NSString *> *)countryNames;
+- (NSArray<NSString *> *)countryNames;
 
 /// Returns an array of all country codes. The codes are sorted by country
 /// name, and their indices match the indices of their respective country name
 /// in the `countryNames`list, but note that this means that the codes
 /// themselves are not sorted alphabetically.
-+ (NSArray<NSString *> *)countryCodes;
+- (NSArray<NSString *> *)countryCodes;
 
 /// Returns a dictionary of country names, keyed by country code.
-+ (NSDictionary<NSString *, NSString *> *)countryNamesByCode;
+- (NSDictionary<NSString *, NSString *> *)countryNamesByCode;
 
 /// Returns a dictionary of country codes, keyed by country name.
-+ (NSDictionary<NSString *, NSString *> *)countryCodesByName;
+- (NSDictionary<NSString *, NSString *> *)countryCodesByName;
 
 /// The delegate. This implements the CountryPickerDelegate protocol,
 /// and is notified when a country is selected.
@@ -88,6 +88,8 @@
 
 /// The font used by the labels in the picker. Set this to change the font.
 @property (nonatomic, copy) UIFont *labelFont;
+
+@property (nonatomic, copy) NSArray<NSString *> *filterCountryCodes;
 
 /// These method allows you to set the current country code.
 /// It works exactly like the equivalent property setter, but has an optional
